@@ -67,7 +67,7 @@ stages:
       artifact: drop
 
 - stage: 'Dev'
-  displayName: 'Deploy the dev environment'
+  displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: |
     and
@@ -91,6 +91,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: 'Resource Manager - multi-stage-pipeline'
+              azureSubscription: 'Service Connection - multi stage pipeline'
               appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
